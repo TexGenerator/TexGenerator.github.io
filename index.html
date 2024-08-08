@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="TexGenerator: Advancing High-Quality Texture Creation with Image-Guided Diffusion Models">
+  <meta name="keywords" content="TexGenerator, Texture, Image Mapping">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <title>Style3DTexGen:  Image-Guided Texture Mapping by  Diffusion Refine</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- for LaTeX format -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({            
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}            
+    });
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+</head>
+<body>
+
+
+<!-- ========== Title ========== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">TexGenerator: Advancing High-Quality Texture Creation with Image-Guided Diffusion Models</h1>
+          <!-- <div style="font-size:x-large;">Preview</div><br> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://github.com/TexGenerator/">ViVO</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/TexGenerator/">ViVo</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/TexGenerator/">ViVo</a><sup>2</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>ViVO,</span>
+            <span class="author-block"><sup>2</sup>ViVO</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://TexGenerator.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF (Coming soon!)</span>
+                </a>
+              </span>
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <a href="https://TexGenerator.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv (Coming soon!)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/TexGenerator/TexGenerator"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== Teaser ========== -->
+<div class="container">
+  <div class="content is-max-desktop">
+    <div class="columns is-centered has-text-centered is-flex-direction-column">
+      <!-- ========== Video ========== -->
+      <video id=“video” controls autoplay muted loop style="max-width:100%;">
+        <source src="./static/videos/video.mov">
+      </video>
+    </div>
+    <p>
+      <b>TexGenerator</b>, Our mesh texture stylization method enables high quality texture style transfer from 
+        a input style image while preserve the original content of mesh's texture using the pretrained diffusion model.
+    </p>
+  </div>
+</div>
+
+<script>
+  document.getElementById("video").play();
+</script>
+
+
+<!-- ========== Abstract ========== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered is-flex-direction-column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this paper, we introduce TexGenerator, a generative framework designed to create high-quality 3D texture maps using images as reference input.
+             While the generation of 3D mesh maps based on text has been extensively explored, there has been relatively little research on using images as 
+             supervision signals for 3D mesh generation, and the results are often less than satisfactory. Existing methods that employ pre-trained 
+             text-to-image (T2I) diffusion models to generate mesh textures struggle to accurately capture the style of the image in text. To address this 
+             challenge, we present the TexGenerator module. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><hr>
+
+
+<!-- ========== Method ========== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered is-flex-direction-column">
+      <h2 class="title is-3">Method</h2>
+      <br>
+      <img src="./static/images/teaser.png" alt="method" style="max-width:100%;">
+      <br>
+      <div class="content has-text-justified">
+        <p>
+          The overview of TexGenerator pipeline.
+        </p>
+      </div>
+
+      <br>
+      <img src="./static/images/unet1.png" alt="method" style="max-width:100%;">
+      <br>
+      <div class="content has-text-justified">
+        <p>
+          Illustrations of the U-Net architectures in (a) Latent Diffusion Model 
+        </p>
+      </div>
+    </div>
+  </div>
+</section><br><br><hr>
+
+<!-- ========== Comparisons ========== -->
+<section class="hero teaser">
+  <div class="columns is-centered has-text-centered is-flex-direction-column"><br>
+    <h2 class="title is-3">Comparisons to other methods</h2>
+  </div>
+  <div class="container is-max-desktop">
+    <p>
+    </p>
+  </div>
+  <div class="columns is-centered has-text-centered is-flex-direction-column">
+    <div class="container" style="width:80%;">
+      <img src="./static/images/main_comparisons2.png" alt="results" style="max-width:85%;">
+      <h2 class="subtitle has-text-centered">
+        
+      </h2>
+    </div>
+  </div>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+</section><br><br><hr>
+
+
+
+<!-- ========== BibTex ========== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Citation</h2>
+    <div class="content has-text-justified">
+    <p>
+      Please consider citing our work if you find it useful.
+    </p>
+    </div>
+    <pre><code>
+      @article{TexGenerator,
+        title = {{TexGenerator: Advancing High-Quality Texture Creation with Image-Guided Diffusion Models}},
+        author = {},
+        journal = {arxiv preprint arXiv:},
+        year = {2024},
+      }
+    </code></pre>
+  </div>
+</section><hr>
+
+
+<!-- ========== Acknowledgements ========== -->
+<!-- <section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+  </div>
+</section> -->
+
+<script src="static/js/script.js"></script>
+<script>
+  new BeforeAfter({
+    id: "#example1"
+  });
+  new BeforeAfter({
+    id: "#example2"
+  });
+  new BeforeAfter({
+    id: "#example3"
+  });
+  new BeforeAfter({
+    id: "#example5"
+  });
+  new BeforeAfter({
+    id: "#example6"
+  });
+  new BeforeAfter({
+    id: "#example7"
+  });
+  new BeforeAfter({
+    id: "#example8"
+  });
+  new BeforeAfter({
+    id: "#example9"
+  });
+  new BeforeAfter({
+    id: "#example10"
+  });
+  new BeforeAfter({
+    id: "#example11"
+  });
+  new BeforeAfter({
+    id: "#example12"
+  });
+  new BeforeAfter({
+    id: "#example13"
+  });
+  new BeforeAfter({
+    id: "#example14"
+  });
+  new BeforeAfter({
+    id: "#example15"
+  });
+  new BeforeAfter({
+    id: "#example16"
+  });
+</script>
+
+<!-- ========== footer ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/APAP_Main.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            The website is based on <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. We thank 
+            <a href="https://keunhong.com/">Keunhong Park</a> for kindly open-sourcing the source code.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
