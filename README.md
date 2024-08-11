@@ -1,6 +1,6 @@
 # TexGenerator
 
-This is the repository that contains the project page for the [TextureDreamer](https://TexGenerator.github.io).
+This is the repository that contains the project page for the [TexGenerator](https://TexGenerator.github.io).
 
 If you find TexGenerator useful for your work please cite:
 ```
