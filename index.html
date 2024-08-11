@@ -132,11 +132,16 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            In this paper, we introduce TexGenerator, a generative framework designed to create high-quality 3D texture maps using images as reference input.
-             While the generation of 3D mesh maps based on text has been extensively explored, there has been relatively little research on using images as 
-             supervision signals for 3D mesh generation, and the results are often less than satisfactory. Existing methods that employ pre-trained 
-             text-to-image (T2I) diffusion models to generate mesh textures struggle to accurately capture the style of the image in text. To address this 
-             challenge, we present the TexGenerator module. 
+            
+In this paper, we present TextureGenerator, an innovative framework designed to generate high-quality, semantically consistent 3D texture maps using reference images. 
+            While text-based 3D texture generation has seen significant advancements, challenges persist when using images as supervisory signals, often resulting in 
+            subpar outcomes. Existing methods primarily rely on pre-trained Text-to-Image (T2I) diffusion models in combination with the IP_Adapter style transfer model 
+            for texture generation. However, these approaches tend to capture only a fraction of the image's stylistic features, leading to difficulties in accurately 
+            reproducing texture details from the reference image, and thereby yielding lower-quality results. To address these challenges, the proposed TextureGenerator 
+            framework introduces a novel approach: it begins by employing a rapid personalization diffusion model based on the reference image, modifies the conditional image in 
+            Canny ControlNet to align its line semantic distribution with the reference image, and finally integrates a multi-view diffusion model to generate precise 3D textures 
+            that preserve both style and semantic consistency. Compared to current state-of-the-art methods, TextureGenerator markedly improves the similarity and quality of textures 
+            generated from reference images, offering robust support for the creation of realistic, high-quality 3D assets.. 
           </p>
         </div>
       </div>
