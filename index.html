@@ -60,7 +60,18 @@
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">TexGenerator: Advancing High-Quality Texture Creation with Image-Guided Diffusion Models</h1>
           <!-- <div style="font-size:x-large;">Preview</div><br> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://zhoushiwei.github.io/">ShiWei Zhou</a><sup>1</sup><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://github.com/weiorwei">JingWei Chi</a><sup>1</sup><sup>*</sup>,</span>
+          </div>
 
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>VIVO AI Lab,</span>
+            <span class="author-block"><sup>2</sup>UESTC</span>
+            <span class="author-block"><sup>*</sup>authors contributed equally to this work</span>
+          </div>
 
 
           <div class="column has-text-centered">
@@ -132,7 +143,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-         In this paper, we introduce TextureGenerator, an innovative framework designed to  produce high-quality textures for 3D Meshes form the given reference images. Our approach introduces  a novel framework for few-shot style personalization of diffusion models by employing a combination of Stable diffusion XL, Low Ranked Adapters (LoRA),ControlNets and IP-Adapter,These components are cascaded during training to produce a personalized diffusion model tailored to the reference images, for cases where the Pre-trained ControlNet and LORA parameters affect each other, and the pre-trained IP-Adapter also fails to capture image details from the input reference image . Additionally,We integrate a multi-view diffusion model to generate precise 3D textures that ensure both style and semantic consistency. Furthermore, we also propose an automatic multi-view texture compositing technique, which ensures the compositing of high-quality texture.Compared to the current state-of-the-art methods, TextureGenerator significantly enhances the similarity and quality of textures generated from reference images, providing strong support for the creation of realistic, high-quality 3D assets.
+         In this paper, we introduce TextureGenerator, an innovative framework designed to  produce high-quality textures for 3D Meshes from the given reference images. Our approach introduces  a novel framework for few-shot style personalization of diffusion models by employing a combination of Stable diffusion XL, Low Ranked Adapters (LoRA),ControlNets and IP-Adapter,These components are cascaded during training to produce a personalized diffusion model tailored to the reference images, for cases where the Pre-trained ControlNet and LORA parameters affect each other, and the pre-trained IP-Adapter also fails to capture image details from the input reference image . Additionally,We integrate a multi-view diffusion model to generate precise 3D textures that ensure both style and semantic consistency. Furthermore, we also propose an automatic multi-view texture compositing technique, which ensures the compositing of high-quality texture.Compared to the current state-of-the-art methods, TextureGenerator significantly enhances the similarity and quality of textures generated from reference images, providing strong support for the creation of realistic, high-quality 3D assets.
           </p>
         </div>
       </div>
